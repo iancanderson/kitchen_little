@@ -1,11 +1,13 @@
 KitchenLittle::Application.routes.draw do
+
   root :to => 'pages#home'
   match 'about', :to => 'pages#about'
-  get "pages/home"
-
-  get "pages/about"
 
   devise_for :users
+
+  resources :users, :only => :show do
+    resources :ingredients, :only => [ :create, :destroy ]
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

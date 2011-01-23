@@ -34,6 +34,8 @@ gem 'will_paginate', '3.0.pre2'
 gem "haml", "~> 3.0.21"
 gem "devise", '~> 1.1'
 gem "cancan", '~> 1.4'
+gem "hpricot"
+gem "haml2slim"
 
 group :test do
   gem "factory_girl_rails", '1.0'
