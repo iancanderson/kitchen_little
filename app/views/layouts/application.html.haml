@@ -2,8 +2,24 @@
 %html
   %head
     %title= "Kitchen Little | #{@title}"
-    = stylesheet_link_tag :all
-    = javascript_include_tag :defaults
     = csrf_meta_tag
+    /[if lt IE 9]
+      %script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
+    = stylesheet_link_tag 'blueprint/print', :media => 'print'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'blueprint/ie'
+    = stylesheet_link_tag 'custom.css.sass', :media => 'screen'
+    = javascript_include_tag :defaults
   %body
-    = yield
+    .container
+      %header
+        -#TODO: logo
+        -#= image_tag("logo.png", :alt => "Kitchen Little", :class => "round")
+        %nav.round
+          %ul
+            %li= link_to "Home", ""
+            %li= link_to "About", ""
+            %li= link_to "Sign in", ""
+      %section.round
+        = yield
