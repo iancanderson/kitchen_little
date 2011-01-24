@@ -1,1 +1,12 @@
 %h2 My Ingredients
+- if current_user == @user
+  - ingredient = Ingredient.new
+  = form_for ingredient, :url => user_ingredients_path(@user, ingredient) do |f|
+    = f.label       :name
+    = f.text_field  :name
+    %br
+    = f.submit
+
+%ul
+- @user.ingredients.each do |ingredient|
+  %li= ingredient.name
