@@ -3,7 +3,9 @@ KitchenLittle::Application.routes.draw do
   root :to => 'pages#home'
   match 'about', :to => 'pages#about'
 
-  devise_for :users
+  devise_for :users, :controllers => { :sessions => "users/sessions" } do
+    match 'signin', :to => 'users/sessions#new'
+  end
 
   resources :users, :only => :show do
     resources :ingredients, :only => [ :create, :destroy ]
