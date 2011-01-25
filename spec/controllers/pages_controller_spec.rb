@@ -18,7 +18,7 @@ describe PagesController do
       it "should show the signup button" do
         get 'home'
         response.should have_selector("a",  :content => "Sign up now!",
-                                            :class => "signup_button round")
+                                            :href => new_user_registration_path)
       end
     end
     
