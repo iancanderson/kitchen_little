@@ -20,6 +20,9 @@
           %ul
             %li= link_to "Home", root_path
             %li= link_to "About", about_path
-            %li= link_to "Sign in", signin_path
+            - if user_signed_in?
+              %li= link_to "Sign out", signout_path
+            - else
+              %li= link_to "Sign in", signin_path
       %section.round
         = yield

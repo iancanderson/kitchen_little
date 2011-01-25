@@ -4,7 +4,8 @@ KitchenLittle::Application.routes.draw do
   match 'about', :to => 'pages#about'
 
   devise_for :users, :controllers => { :sessions => "users/sessions" } do
-    match 'signin', :to => 'users/sessions#new'
+    match 'signin',   :to => 'users/sessions#new'
+    match 'signout',  :to => 'users/sessions#destroy'
   end
 
   resources :users, :only => :show do
