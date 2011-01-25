@@ -40,5 +40,17 @@ describe Ingredient do
     it 'should reject a long name' do
       @user.ingredients.build(:name => 'a'*51).should_not be_valid
     end
+    
+    it 'should reject duplicate names for the same user' do
+      @user.ingredients.create!(@attr)
+      @user.ingredients.create(@attr).should_not be_valid
+    end
+    
+    it 'should allow the same names for different users' do
+      @user2 = Factory(:user, :email => "user2@example.com")
+      @user.ingredients.create!(@attr)
+      @user2.ingredients.create!(@attr)
+    end
+    
   end
 end

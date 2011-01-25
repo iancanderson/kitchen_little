@@ -6,6 +6,6 @@ Factory.define :user do |user|
 end
 
 Factory.define :ingredient do |ingredient|
-  ingredient.name "garlic"
+  ingredient.sequence(:name) { |n| "ingredient#{n}" }
   ingredient.user_id 1
 end
