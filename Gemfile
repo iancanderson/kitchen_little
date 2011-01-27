@@ -36,11 +36,12 @@ gem "devise", '~> 1.1'
 gem "cancan", '~> 1.4'
 gem "hpricot"
 gem "haml2slim"
+gem 'jquery-rails', '>= 0.2.6'
 
 group :test do
   gem "factory_girl_rails", '1.0'
   gem 'rspec', '2.3.0'
-  gem 'webrat', '0.7.1'
+  gem 'webrat', '0.7.2'
   gem 'spork', '0.8.4'
 end
 

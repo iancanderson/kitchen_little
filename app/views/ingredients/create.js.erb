@@ -1,0 +1,10 @@
+alert("wtf?");
+
+/* Add the new ingredient to the top of the ingredients list */
+$("#ingredients").append("<li> <%= escape_javascript(@ingredient.name) %> </li>");
+
+/* Highlight the new ingredient */
+$("#ingredient_<%= @ingredient.id %>").effect("highlight", {}, 3000);
+
+/* Reset the comment form */
+$("#new_ingredient")[0].reset();

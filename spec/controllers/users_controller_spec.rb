@@ -5,6 +5,8 @@ describe UsersController do
 
   before(:each) do
     @user = Factory(:user)
+    @ing1 = Factory(:ingredient, :user_id => @user)
+    @ing2 = Factory(:ingredient, :user_id => @user)
   end
 
   describe "GET 'show'" do
@@ -17,13 +19,13 @@ describe UsersController do
     it 'should find the right user' do
       get :show, :id => @user
       assigns(:user).should == @user
-    end
-    
+    end    
 
     it "should show the user's list of ingredients" do
-      @ingredient = Factory(:ingredient, :user_id => @user)
       get :show, :id => @user
-      response.should have_selector("li", :content => @ingredient.name)
+      response.should have_selector("ul#ingredients")
+      response.should have_selector("li", :content => @ing1.name)
+      response.should have_selector("li", :content => @ing2.name)
     end
     
     describe 'user signed in' do
@@ -35,6 +37,11 @@ describe UsersController do
       it 'should show the new ingredient form' do
         get :show, :id => @user
         response.should have_selector("form", :id => "new_ingredient")
+      end
+      
+      it "should show a delete link next to each ingredient" do
+        get :show, :id => @user
+        response.should have_selector("a", :content => "delete")
       end
     end
     
