@@ -1,0 +1,7 @@
+%div[ingredient]
+  = ingredient.name
+  - if current_user == ingredient.user
+    = link_to "delete",
+      user_ingredient_path(ingredient.user, ingredient),
+      :method => :delete,
+      :remote => true

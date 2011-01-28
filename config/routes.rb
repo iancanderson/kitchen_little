@@ -10,7 +10,10 @@ KitchenLittle::Application.routes.draw do
   end
 
   resources :users, :only => :show do
-    resources :ingredients, :only => [ :create, :destroy ]
+    # the :format => :js option makes ingredients#create work with AJAX
+    resources :ingredients, 
+              :only => [ :create, :destroy ], 
+              :defaults => { :format => :js }
   end
 
   # The priority is based upon order of creation:
