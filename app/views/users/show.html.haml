@@ -4,6 +4,7 @@
   = form_for  ingredient, 
               :url => user_ingredients_path(@user, ingredient), 
               :remote => true do |f|
+    = f.label       :name
     = f.text_field  :name
     = f.submit :value => "Add Ingredient"
     %br
