@@ -11,17 +11,12 @@ describe "Ingredients" do
   end
   
   describe "deletion" do
-    
-    before(:each) do
-      visit user_path(@user)
-      fill_in :name, :with => "onions"
-      click_button
-      click_link "delete"
-    end
-    
-    it "should delete the ingredient from the list" do
-      visit user_path(@user)
-      response.should_not have_selector("li.ingredient")
-    end
+    it "can be deleted by their owner"
+    it "can't be deleted by unauthorized users"
+  end
+  
+  describe "creation" do
+    it "can be created by their owner"
+    it "can't be created by unauthorized users"
   end
 end

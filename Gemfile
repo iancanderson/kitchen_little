@@ -41,8 +41,8 @@ gem 'jquery-rails', '>= 0.2.6'
 group :test do
   gem "factory_girl_rails", '1.0'
   gem 'rspec', '2.3.0'
-  gem 'webrat', '0.7.2'
   gem 'spork', '0.8.4'
+  gem 'capybara'
 end
 
 group :development do

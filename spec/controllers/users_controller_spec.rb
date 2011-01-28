@@ -23,9 +23,9 @@ describe UsersController do
 
     it "should show the user's list of ingredients" do
       get :show, :id => @user
-      response.should have_selector("ul#ingredients")
-      response.should have_selector("li", :content => @ing1.name)
-      response.should have_selector("li", :content => @ing2.name)
+      response.should have_selector("div#ingredients")
+      response.should have_selector("div", :content => @ing1.name)
+      response.should have_selector("div", :content => @ing2.name)
     end
     
     describe 'user signed in' do
