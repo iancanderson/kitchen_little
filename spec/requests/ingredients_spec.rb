@@ -18,5 +18,6 @@ describe "Ingredients" do
   describe "creation" do
     it "can be created by their owner"
     it "can't be created by unauthorized users"
+    it "should show an error message when validation fails"
   end
 end

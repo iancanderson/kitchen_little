@@ -42,7 +42,7 @@ group :test do
   gem "factory_girl_rails", '1.0'
   gem 'rspec', '2.3.0'
   gem 'spork', '0.8.4'
-  gem 'capybara'
+  gem 'webrat'
 end
 
 group :development do

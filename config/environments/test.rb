@@ -33,6 +33,6 @@ KitchenLittle::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  require 'capybara/rails'
-  Capybara.default_driver = :selenium
+#  require 'capybara/rails'
+#  Capybara.default_driver = :selenium
 end
