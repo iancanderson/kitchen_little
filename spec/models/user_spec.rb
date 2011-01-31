@@ -9,14 +9,19 @@ describe User do
       :password_confirmation => "foobar"
     }
   end
-  
+
   it 'should create a new instance given valid attributes' do
     User.create!(@attr)
   end
-  
-  it 'should require an email address' do
-    no_email_user = User.new(@attr.merge(:email => ""))
-    no_email_user.should_not be_valid
+    
+  context "is not valid" do
+
+    [:email, :password].each  do |attr|
+      it "without #{attr}" do
+        subject.should_not be_valid
+        subject.errors[attr].should_not be_empty
+      end
+    end
   end
   
   it 'should accept valid email addresses' do
@@ -64,11 +69,6 @@ describe User do
   end  
   
   describe "password validations" do
-
-    it "should require a password" do
-      User.new(@attr.merge(:password => "", :password_confirmation => "")).
-        should_not be_valid
-    end
 
     it "should require a matching password confirmation" do
       User.new(@attr.merge(:password_confirmation => "invalid")).
