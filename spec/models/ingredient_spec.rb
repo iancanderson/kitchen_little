@@ -2,55 +2,49 @@ require 'spec_helper'
 
 describe Ingredient do
 
-  before(:each) do
-    @user = Factory(:user)
-    @attr = { :name => "garlic" }
+  it "belongs to user" do
+    should respond_to(:user)
   end
-  
-  it 'should create a new instance with valid attributes' do
-    @user.ingredients.create!(@attr)
-  end
-  
-  describe 'user association' do
-  
-    before(:each) do
-      @ingredient = @user.ingredients.create(@attr)
+
+  context "is not valid" do
+    [:name, :user_id].each do |attr|
+      it "without #{attr}" do
+        subject.should_not be_valid
+        subject.errors[attr].should_not be_empty
+      end
     end
-    
-    it 'should have a user attribute' do
-      @ingredient.should respond_to(:user)
+
+    it "with a blank name" do
+      subject.name = "  "
+      subject.should_not be_valid
+      subject.errors[:name].should_not be_empty
     end
-    
-    it 'should have the right associated user' do
-      @ingredient.user_id.should == @user.id
-      @ingredient.user.should == @user
+
+    it "with a name longer than 50 characters" do
+      subject.name = "a"*51;
+      subject.should_not be_valid
+      subject.errors[:name].should_not be_empty
+    end
+
+    it "with a duplicate name and the same user_id" do
+      ingredient1 = Factory.create(:ingredient)
+      lambda {
+        ingredient2 = Factory.create(:ingredient,
+                                     :name => ingredient1.name,
+                                     :user_id => ingredient1.user_id)
+      }.should raise_error(ActiveRecord::RecordInvalid, /already been taken/)
     end
   end
 
-  describe 'validations' do
-    
-    it 'should have a user id' do
-      Ingredient.new(@attr).should_not be_valid
+  context "scopes" do
+    before do
+      Ingredient.delete_all
+      @first_ingredient = Factory(:ingredient, :created_at => 1.day.ago)
+      @second_ingredient = Factory(:ingredient, :created_at => 1.hour.ago)
     end
-    
-    it 'should require a nonblank name' do
-      @user.ingredients.build(:name => "   ").should_not be_valid
+
+    it "is ordered by descending creation date, by default" do
+      Ingredient.all.should == [@second_ingredient, @first_ingredient]
     end
-    
-    it 'should reject a long name' do
-      @user.ingredients.build(:name => 'a'*51).should_not be_valid
-    end
-    
-    it 'should reject duplicate names for the same user' do
-      @user.ingredients.create!(@attr)
-      @user.ingredients.create(@attr).should_not be_valid
-    end
-    
-    it 'should allow the same names for different users' do
-      @user2 = Factory(:user, :email => "user2@example.com")
-      @user.ingredients.create!(@attr)
-      @user2.ingredients.create!(@attr)
-    end
-    
   end
 end

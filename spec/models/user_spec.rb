@@ -100,10 +100,6 @@ describe User do
       @user.should respond_to(:ingredients)
     end
     
-    it 'should have the right ingredients in the right order' do
-      @user.ingredients.should == [@ing2, @ing1]
-    end
-    
     it 'should destroy associated ingredients' do
       @user.destroy
       [@ing1, @ing2].each do |ingredient|
