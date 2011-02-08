@@ -61,10 +61,21 @@ describe RecipesController do
     end
   end
 
-  describe "GET 'destroy'" do
+  describe "DELETE 'destroy'" do
     context "when successful" do
-      it "should delete a record"
+      before do
+        @recipe = Factory(:recipe)
+      end
+      it "should delete a record" do
+        lambda {
+          delete  :destroy,
+                  :id => @recipe.id,
+                  :user_id => @recipe.user.id
+        }.should change(Recipe, :count).by(-1)
+      end
+    end
+    context "when failing" do
+      it "should NOT delete a record"
     end
   end
-
 end
