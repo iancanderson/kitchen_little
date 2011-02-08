@@ -10,10 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110124044044) do
+ActiveRecord::Schema.define(:version => 20110208011550) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recipes", :force => true do |t|
+    t.string   "link_url"
+    t.string   "link_name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

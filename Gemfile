@@ -34,21 +34,23 @@ gem 'will_paginate', '3.0.pre2'
 gem "haml", "~> 3.0.21"
 gem "devise", '~> 1.1'
 gem "cancan", '~> 1.4'
-gem "hpricot"
-gem "haml2slim"
+gem "hpricot", '0.8.3'
+gem "haml2slim", '0.4.3'
 gem 'jquery-rails', '>= 0.2.6'
+gem 'ruby-debug19', '0.11.6'
+gem 'ruby-debug-ide19', '0.4.12'
 
 group :test do
   gem "factory_girl_rails", '1.0'
   gem 'rspec', '2.3.0'
   gem 'spork', '0.8.4'
-  gem 'webrat'
+  gem 'webrat', '0.7.2'
 end
 
 group :development do
-  gem "nifty-generators"
-  gem "rails3-generators"
-  gem "haml-rails"
+  gem "nifty-generators", '0.4.4'
+  gem "rails3-generators", '0.17.2'
+  gem "haml-rails", '0.3.4'
   gem 'rspec-rails', '2.3.0'
   gem 'annotate-models', '1.0.4'
   gem 'faker', '0.3.1'

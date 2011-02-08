@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many  :ingredients, :dependent => :destroy
+  has_many  :recipes, :dependent => :destroy
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

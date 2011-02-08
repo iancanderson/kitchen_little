@@ -7,5 +7,11 @@ end
 
 Factory.define :ingredient do |ingredient|
   ingredient.sequence(:name) { |n| "ingredient#{n}" }
-  ingredient.user
+  ingredient.association :user
+end
+
+Factory.define :recipe do |recipe|
+  recipe.sequence(:link_url)  { |n| "http://www.example.com/Recipe/#{n}" }
+  recipe.sequence(:link_name) { |n| "Recipe #{n}" }
+  recipe.association :user
 end

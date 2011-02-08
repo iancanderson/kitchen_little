@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Ingredient do
 
-  it "belongs to user" do
+  it "belongs to a user" do
     should respond_to(:user)
   end
 
@@ -28,10 +28,10 @@ describe Ingredient do
 
     it "with a duplicate name and the same user_id" do
       ingredient1 = Factory.create(:ingredient)
-      lambda {
-        ingredient2 = Factory.create(:ingredient,
-                                     :name => ingredient1.name,
-                                     :user_id => ingredient1.user_id)
+      lambda{
+        Factory.create(:ingredient,
+                       :name => ingredient1.name,
+                       :user_id => ingredient1.user_id)
       }.should raise_error(ActiveRecord::RecordInvalid, /already been taken/)
     end
   end
@@ -39,8 +39,8 @@ describe Ingredient do
   context "scopes" do
     before do
       Ingredient.delete_all
-      @first_ingredient = Factory(:ingredient, :created_at => 1.day.ago)
-      @second_ingredient = Factory(:ingredient, :created_at => 1.hour.ago)
+      @first_ingredient = Factory.create(:ingredient, :created_at => 1.day.ago)
+      @second_ingredient = Factory.create(:ingredient, :created_at => 1.hour.ago)
     end
 
     it "is ordered by descending creation date, by default" do
