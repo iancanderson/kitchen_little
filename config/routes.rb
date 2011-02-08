@@ -1,5 +1,9 @@
 KitchenLittle::Application.routes.draw do
 
+  get "recipes/create"
+
+  get "recipes/destroy"
+
   root :to => 'pages#home'
   match 'about', :to => 'pages#about'
 
@@ -12,7 +16,10 @@ KitchenLittle::Application.routes.draw do
   resources :users, :only => :show do
     # the :format => :js option makes ingredients#create work with AJAX
     resources :ingredients, 
-              :only => [ :create, :destroy ], 
+              :only => [:create, :destroy],
+              :defaults => { :format => :js }
+    resources :recipes,
+              :only => [:create, :destroy],
               :defaults => { :format => :js }
   end
 
