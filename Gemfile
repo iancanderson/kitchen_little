@@ -37,8 +37,6 @@ gem "cancan", '~> 1.4'
 gem "hpricot", '0.8.3'
 gem "haml2slim", '0.4.3'
 gem 'jquery-rails', '>= 0.2.6'
-gem 'ruby-debug19', '0.11.6'
-gem 'ruby-debug-ide19', '0.4.12'
 
 group :test do
   gem "factory_girl_rails", '1.0'
@@ -54,4 +52,6 @@ group :development do
   gem 'rspec-rails', '2.3.0'
   gem 'annotate-models', '1.0.4'
   gem 'faker', '0.3.1'
+  gem 'ruby-debug19', '0.11.6'
+  gem 'ruby-debug-ide19', '0.4.12'
 end
