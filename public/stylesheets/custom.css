@@ -25,13 +25,16 @@ section h1 {
 
 /* Links */
 a {
-  color: #c3d9ff;
+  color: #356aa0;
   text-decoration: none; }
 
 a:visited {
   color: #006699; }
   a:visited a:hover {
     text-decoration: underline; }
+
+a.delete {
+  font-size: small; }
 
 /* Navigation */
 nav {

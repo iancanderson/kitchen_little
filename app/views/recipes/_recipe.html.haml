@@ -1,0 +1,8 @@
+%div[recipe]
+  %a{:href => recipe.link_url}= recipe.link_name  
+  - if current_user == recipe.user
+    = link_to "delete",
+      user_recipe_path(recipe.user, recipe),
+      :method => :delete,
+      :remote => true,
+      :class => "delete"

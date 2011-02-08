@@ -3,7 +3,7 @@
 $body-bg-color:     #CDEB8B;
 $header-bg-color:   #C3D9FF;
 $section-bg-color:  #fff;
-$link-color:        #C3D9FF;
+$link-color:        #356AA0;
 $link-hover-color:  #069;
 $text-color:        #36393D;
 
@@ -49,6 +49,10 @@ a:visited {
     a:hover {
       text-decoration: underline;
     }
+}
+
+a.delete {
+  font-size: small;
 }
 
 /* Navigation */

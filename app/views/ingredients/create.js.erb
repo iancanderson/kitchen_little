@@ -10,7 +10,7 @@ $("#ingredients").prepend("<%= escape_javascript(render(@ingredient)) %>");
 /* Highlight the new ingredient */
 $("#ingredient_<%= escape_javascript(@ingredient.id.to_s) %>").effect("highlight", {}, 3000);
 
-/* Reset the comment form */
+/* Reset the ingredient form */
 $("#new_ingredient")[0].reset();
 
 $("#ingredient-notice").fadeTo(3000, 0);
