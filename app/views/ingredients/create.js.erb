@@ -1,14 +1,17 @@
 try {
 
 /* Insert a notice between the last comment and the comment form */
-$("#ingredient-notice").html('<div class="flash notice"><%= escape_javascript(flash.delete(:notice)) %></div>');
-$("#ingredient-notice").fadeIn(0);
+//$("#ingredient-notice").html('<div class="flash notice"><%= escape_javascript(flash.delete(:notice)) %></div>');
+//$("#ingredient-notice").fadeIn(0);
 
 /* Add the new ingredient to the top of the ingredients list */
 $("#ingredients").prepend("<%= escape_javascript(render(@ingredient)) %>");
-
 /* Highlight the new ingredient */
 $("#ingredient_<%= escape_javascript(@ingredient.id.to_s) %>").effect("highlight", {}, 3000);
+
+// update the efficiency score
+<%= render  :partial => 'shared/update_efficiency_score',
+            :locals => { :user => @ingredient.user } %>
 
 /* Reset the ingredient form */
 $("#new_ingredient")[0].reset();

@@ -1,4 +1,11 @@
-%h2 My Ingredients
+%h1= "#{possessive_pronoun_for_user} Kitchen"
+#score
+  = @user.kitchen_efficiency_score_display
+  - if current_user == @user
+    %br
+    = @user.kitchen_efficiency_score_description
+%br
+%h3= "#{possessive_pronoun_for_user} Ingredients"
 - if current_user == @user
   - ingredient = Ingredient.new
   #ingredient-notice
@@ -13,8 +20,9 @@
 #ingredients
   - @user.ingredients.each do |ingredient|
     = render(ingredient)
+%br
 
-%h2 My Recipes
+%h3= "#{possessive_pronoun_for_user} recipes"
 - if current_user == @user
   - recipe = Recipe.new
   #recipe-notice

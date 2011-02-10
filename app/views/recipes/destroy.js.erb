@@ -1,2 +1,6 @@
 /* Eliminate the recipe by fading it out */
-$('#recipe_<%= @recipe.id %>').fadeOut();
+$('#recipe_<%= @recipe.id %>').fadeOut("fast");
+
+// update the efficiency score
+<%= render  :partial => 'shared/update_efficiency_score',
+            :locals => { :user => @recipe.user } %>

@@ -1,0 +1,6 @@
+/* Update the efficiency score */
+$("#score").html("<%= escape_javascript(user.kitchen_efficiency_score_display) %>");
+$("#score").append("<br />");
+$("#score").append("<%= escape_javascript(user.kitchen_efficiency_score_description) %>");
+/* Highlight the new score */
+$("#score").effect("highlight", {}, 3000);

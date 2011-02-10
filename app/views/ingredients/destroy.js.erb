@@ -1,2 +1,6 @@
 /* Eliminate the ingredient by fading it out */
-$('#ingredient_<%= @ingredient.id %>').fadeOut();
+        $('#ingredient_<%= @ingredient.id %>').fadeOut("fast");
+
+// update the efficiency score
+<%= render  :partial => 'shared/update_efficiency_score',
+            :locals => { :user => @ingredient.user } %>

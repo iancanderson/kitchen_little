@@ -1,14 +1,18 @@
 try {
 
 /* Insert a notice between the last comment and the comment form */
-$("#recipe-notice").html('<div class="flash notice"><%= escape_javascript(flash.delete(:notice)) %></div>');
-$("#recipe-notice").fadeIn(0);
+//$("#recipe-notice").html('<div class="flash notice"><%= escape_javascript(flash.delete(:notice)) %></div>');
+//$("#recipe-notice").fadeIn(0);
 
 /* Add the new recipe to the top of the recipes list */
 $("#recipes").prepend("<%= escape_javascript(render(@recipe)) %>");
 
 /* Highlight the new recipe */
 $("#recipe_<%= escape_javascript(@recipe.id.to_s) %>").effect("highlight", {}, 3000);
+
+// update the efficiency score
+<%= render  :partial => 'shared/update_efficiency_score',
+            :locals => { :user => @recipe.user } %>
 
 /* Reset the recipe form */
 $("#new_recipe")[0].reset();

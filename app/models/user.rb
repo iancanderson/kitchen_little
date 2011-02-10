@@ -18,4 +18,20 @@ class User < ActiveRecord::Base
     x = recipes.count.to_f / ingredients.count.to_f
     200 * Math.atan(x / 3) / Math::PI
   end
+
+  def kitchen_efficiency_score_display
+    score = kitchen_efficiency_score
+    "Efficiency Score = %.2f / 100" % score
+  end
+
+  def kitchen_efficiency_score_description
+    case kitchen_efficiency_score
+      when 0..33
+        return "You have some work to do. Add more recipes or get rid of some ingredients."
+      when 34..66
+        return "You're doing pretty well, but you can do better!"
+      when 67..100
+        return "Keep up the good work! You're really getting the most out of your ingredients."
+    end
+  end
 end
