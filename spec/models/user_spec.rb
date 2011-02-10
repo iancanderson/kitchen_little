@@ -87,4 +87,47 @@ describe User do
       Recipe.find(recipe)
     end.should raise_error(ActiveRecord::RecordNotFound)
   end
+
+  context "efficiency calculations" do
+    before do
+      @efficient_user = Factory(:user)
+      @inefficient_user = Factory(:user)
+      @equal_user = Factory(:user)
+      @no_recipe_user = Factory(:user)
+      @no_ingredient_user = Factory(:user)
+      5.times do
+        Factory(:ingredient, :user_id => @efficient_user.id)
+        Factory(:recipe, :user_id => @inefficient_user.id)
+        Factory(:ingredient, :user_id => @no_recipe_user.id)
+        Factory(:recipe, :user_id => @no_ingredient_user.id)
+        Factory(:ingredient, :user_id => @equal_user.id)
+        Factory(:recipe, :user_id => @equal_user.id)
+      end
+      50.times do
+        Factory(:recipe, :user_id => @efficient_user.id)
+        Factory(:ingredient, :user_id => @inefficient_user.id)
+      end
+    end
+    it "should default to zero" do
+      User.new.kitchen_efficiency_score.should == 0
+    end
+    it "should score 0 with some ingredients and no recipes" do
+      @no_recipe_user.kitchen_efficiency_score.should == 0
+    end
+    it "should score 0 with some recipes and no ingredients" do
+      @no_ingredient_user.kitchen_efficiency_score.should == 0
+    end
+    it "should score between 75 and 85 when recipes/ingredients = 10" do
+      @efficient_user.kitchen_efficiency_score.should > 75
+      @efficient_user.kitchen_efficiency_score.should < 85
+    end
+    it "should score between 0 and 5 when recipes/ingredients = 0.1" do
+      @inefficient_user.kitchen_efficiency_score.should > 0
+      @inefficient_user.kitchen_efficiency_score.should < 5
+    end
+    it "should score between 15 and 25 when recipes/ingredients = 1" do
+      @equal_user.kitchen_efficiency_score.should > 15
+      @equal_user.kitchen_efficiency_score.should < 25
+    end
+  end
 end
