@@ -8,7 +8,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :login, :email, :username, :password, :password_confirmation, :remember_me
+
+  # Virtual attribute for authenticating by either username or email
+  # This is in addition to a real persisted field like 'username'
+  attr_accessor :login
 
   def kitchen_efficiency_score
     if ingredients.empty? or recipes.empty?
@@ -33,5 +37,12 @@ class User < ActiveRecord::Base
       when 67..100
         return "Keep up the good work! You're really getting the most out of your ingredients."
     end
+  end
+
+  protected
+
+  def self.find_for_database_authentication(conditions)
+    login = conditions.delete(:login)
+    where(conditions).where(["username = :value OR email = :value", { :value => login }]).first
   end
 end
