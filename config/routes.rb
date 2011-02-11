@@ -1,9 +1,5 @@
 KitchenLittle::Application.routes.draw do
 
-  get "recipes/create"
-
-  get "recipes/destroy"
-
   root :to => 'pages#home'
   match 'about', :to => 'pages#about'
 
