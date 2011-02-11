@@ -7,16 +7,11 @@ describe Recipe do
   end
 
   context "is not valid" do
-    [:link_url, :link_name].each do |attr|
+    [:link_name].each do |attr|
       it "without #{attr}" do
         subject.should_not be_valid
         subject.errors[attr].should_not be_empty
       end
-    end
-    it "with a blank link_url" do
-      subject.link_url = "  "
-      subject.should_not be_valid
-      subject.errors[:link_url].should_not be_empty
     end
     it "with a blank link_name" do
       subject.link_name = "  "

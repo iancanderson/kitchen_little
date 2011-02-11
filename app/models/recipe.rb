@@ -2,7 +2,6 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
 
   validates :link_url,
-            :presence => true,
             :uniqueness => { :scope => :user_id }
   validates :link_name,
             :presence => true,
