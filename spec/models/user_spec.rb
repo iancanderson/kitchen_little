@@ -1,14 +1,22 @@
 require 'spec_helper'
 
+
 describe User do
 
   context "is not valid" do
     
-    [:email, :password].each do |attr|
+    [:email, :password, :username].each do |attr|
       it "without #{attr}" do
         subject.should_not be_valid
         subject.errors[attr].should_not be_empty
       end
+    end
+
+    it "with a duplicate username" do
+      existing_user = Factory.create(:user)
+      lambda{
+        new_user = Factory.create(:user, :username => existing_user.username)
+      }.should raise_error(ActiveRecord::RecordInvalid, /already been taken/)
     end
 
     it "with an invalid email address" do
