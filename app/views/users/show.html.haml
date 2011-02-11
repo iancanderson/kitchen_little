@@ -12,10 +12,14 @@
   = form_for  ingredient, 
               :url => user_ingredients_path(@user, ingredient), 
               :remote => true do |f|
-    = f.label       :name
-    = f.text_field  :name
-    = f.submit :value => "Add Ingredient"
-    %br
+    %table.form
+      %tr
+        %td.label
+          = f.label       :name, "Ingredient name"
+        %td.field
+          = f.text_field  :name
+        %td.submit
+          = f.submit :value => "Add Ingredient"
 
 #ingredients
   - @user.ingredients.each do |ingredient|
@@ -29,13 +33,19 @@
   = form_for  recipe,
               :url => user_recipes_path(@user, recipe),
               :remote => true do |f|
-    = f.label       :link_name
-    = f.text_field  :link_name
-    %br
-    = f.label       :link_url
-    = f.text_field  :link_url
-    = f.submit :value => "Add Recipe"
-    %br
+    %table.form
+      %tr
+        %td.label
+          = f.label       :link_name, "Recipe name"
+        %td.field
+          = f.text_field  :link_name
+      %tr
+        %td.label
+          = f.label       :link_url, "Recipe link URL (optional)"
+        %td.field
+          = f.text_field  :link_url
+        %td.submit
+          = f.submit :value => "Add Recipe"
 
 #recipes
   - @user.recipes.each do |recipe|
