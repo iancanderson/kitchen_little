@@ -1,5 +1,9 @@
 %div[recipe]
-  %a{:href => recipe.link_url}= recipe.link_name  
+  - if recipe.link_url.empty?
+    = recipe.link_name
+  - else
+    %a{:href => recipe.link_url, :target => "_blank" }
+      = recipe.link_name
   - if current_user == recipe.user
     = link_to "delete",
       user_recipe_path(recipe.user, recipe),
