@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe User do
 
   context "is not valid" do

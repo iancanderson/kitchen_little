@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
   # This is in addition to a real persisted field like 'username'
   attr_accessor :login
 
+  def to_param
+    username
+  end
+
   def kitchen_efficiency_score
     if ingredients.empty? or recipes.empty?
       return 0

@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController  
 
   def create
-    @user = User.find(params[:user_id])
+    @user = User.find_by_username(params[:user_id])
     @recipe = @user.recipes.build(params[:recipe])
     @recipe.save
     respond_to do |format|

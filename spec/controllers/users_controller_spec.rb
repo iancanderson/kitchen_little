@@ -12,17 +12,17 @@ describe UsersController do
   describe "GET 'show'" do
     
     it "should be successful" do
-      get :show, :id => @user
+      get :show, :id => @user.username
       response.should be_success
     end
     
     it 'should find the right user' do
-      get :show, :id => @user
+      get :show, :id => @user.username
       assigns(:user).should == @user
     end    
 
     it "should show the user's list of ingredients" do
-      get :show, :id => @user
+      get :show, :id => @user.username
       response.should have_selector("div#ingredients")
       response.should have_selector("div", :content => @ing1.name)
       response.should have_selector("div", :content => @ing2.name)
@@ -35,12 +35,12 @@ describe UsersController do
       end
       
       it 'should show the new ingredient form' do
-        get :show, :id => @user
+        get :show, :id => @user.username
         response.should have_selector("form", :id => "new_ingredient")
       end
       
       it "should show a delete link next to each ingredient" do
-        get :show, :id => @user
+        get :show, :id => @user.username
         response.should have_selector("a", :content => "delete")
       end
     end
@@ -48,7 +48,7 @@ describe UsersController do
     describe 'user not signed in' do
       
       it 'should not show the new ingredient form' do
-        get :show, :id => @user
+        get :show, :id => @user.username
         response.should_not have_selector("form", :id => "new_ingredient")
       end
     end

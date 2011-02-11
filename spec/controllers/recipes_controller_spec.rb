@@ -12,7 +12,7 @@ describe RecipesController do
       def post_recipe
         post :create,
              :recipe => @post_params,
-             :user_id => @user
+             :user_id => @user.username
       end
 
       it "should redirect to the user show page" do
@@ -40,7 +40,7 @@ describe RecipesController do
       def post_recipe
         post :create,
              :recipe => @post_params,
-             :user_id => @user
+             :user_id => @user.username
       end
 
       it "should re-render the user show page" do

@@ -1,11 +1,11 @@
 class IngredientsController < ApplicationController
   
   def create
-    @user = User.find(params[:user_id])
+    @user = User.find_by_username(params[:user_id])
     @ingredient = @user.ingredients.build(params[:ingredient])
     @ingredient.save
     respond_to do |format|
-      format.html { redirect_to user_path(params[:user_id]) }
+      format.html { redirect_to @user }
       format.js
     end
   end

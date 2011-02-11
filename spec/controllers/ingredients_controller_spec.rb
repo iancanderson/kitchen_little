@@ -17,12 +17,12 @@ describe IngredientsController do
       
       it 'should not create an ingredient' do
         lambda do
-          post :create, :ingredient => @attr, :user_id => @user.id
+          post :create, :ingredient => @attr, :user_id => @user.username
         end.should_not change(Ingredient, :count)
       end
       
       it 'should redirect to the user show page' do
-        post :create, :ingredient => @attr, :user_id => @user.id
+        post :create, :ingredient => @attr, :user_id => @user.username
         response.should redirect_to @user
       end
     end
@@ -35,18 +35,18 @@ describe IngredientsController do
       
       it 'should create an ingredient' do
         lambda do
-          post :create, :ingredient => @attr, :user_id => @user.id
+          post :create, :ingredient => @attr, :user_id => @user.username
         end.should change(Ingredient, :count).by(1)
       end
       
       it 'should associate the new ingredient with the correct user' do
         lambda do
-          post :create, :ingredient => @attr, :user_id => @user.id
+          post :create, :ingredient => @attr, :user_id => @user.username
         end.should change(@user.ingredients, :count).by(1)
       end
       
       it 'should redirect to the user show page' do
-        post :create, :ingredient => @attr, :user_id => @user.id
+        post :create, :ingredient => @attr, :user_id => @user.username
         response.should redirect_to @user
       end
     end
