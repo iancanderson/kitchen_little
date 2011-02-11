@@ -34,8 +34,8 @@ describe RecipesController do
     context "when failing" do
       before do
         @user = Factory(:user)
-        @post_params = {  :link_url => "",
-                          :link_name => "Delicious Chili" }
+        @post_params = {  :link_url => "http://www.example.com",
+                          :link_name => "" }
       end
       def post_recipe
         post :create,
