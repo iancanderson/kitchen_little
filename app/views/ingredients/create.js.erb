@@ -9,6 +9,9 @@ $("#ingredients").prepend("<%= escape_javascript(render(@ingredient)) %>");
 /* Highlight the new ingredient */
 $("#ingredient_<%= escape_javascript(@ingredient.id.to_s) %>").effect("highlight", {}, 3000);
 
+// update the recipe puppy link URL
+$("#recipe-puppy-link").attr('href', "<%= recipe_puppy_link(@ingredient.user) %>");
+
 // update the efficiency score
 <%= render  :partial => 'shared/update_efficiency_score',
             :locals => { :user => @ingredient.user } %>

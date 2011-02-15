@@ -1,6 +1,9 @@
 /* Eliminate the ingredient by fading it out */
         $('#ingredient_<%= @ingredient.id %>').fadeOut("fast");
 
+// update the recipe puppy link URL
+$("#recipe-puppy-link").attr('href', "<%= recipe_puppy_link(@ingredient.user) %>");
+
 // update the efficiency score
 <%= render  :partial => 'shared/update_efficiency_score',
             :locals => { :user => @ingredient.user } %>

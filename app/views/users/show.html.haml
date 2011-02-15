@@ -47,6 +47,11 @@
         %td.submit
           = f.submit :value => "Add Recipe"
 
+- if current_user == @user
+  %a#recipe-puppy-link{:href => recipe_puppy_link(@user)} Find more recipes using your ingredients
+  %br
+  %br
+
 #recipes
   - @user.recipes.each do |recipe|
     = render(recipe)
