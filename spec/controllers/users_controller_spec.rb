@@ -1,4 +1,4 @@
-require 'spec_helper'
+ require 'spec_helper'
 
 describe UsersController do
   render_views
@@ -50,6 +50,39 @@ describe UsersController do
       it 'should not show the new ingredient form' do
         get :show, :id => @user.username
         response.should_not have_selector("form", :id => "new_ingredient")
+      end
+    end
+  end
+
+  describe "GET 'index'" do
+    it "should be successful" do
+      get :index
+      response.should be_success
+    end
+
+    it 'should have the right title' do
+      get :index
+      response.should have_selector("title", :content => "Kitchen Little | Home")
+    end
+
+    describe "when not signed in" do
+      it "should show the signup button" do
+        get :index
+        response.should have_selector("a",  :content => "Sign up now!",
+                                            :href => new_user_registration_path)
+      end
+    end
+
+    describe "when signed in" do
+
+      before(:each) do
+        @user = Factory(:user)
+        sign_in @user
+      end
+
+      it "should not show the signup button'" do
+        get :index
+        response.should_not have_selector("a",  :content => "Sign up now!")
       end
     end
   end

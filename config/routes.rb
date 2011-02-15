@@ -1,6 +1,6 @@
 KitchenLittle::Application.routes.draw do
 
-  root :to => 'pages#home'
+  root :to => 'users#index'
   match 'about', :to => 'pages#about'
 
   devise_for :users, :controllers => { :sessions => "users/sessions" } do

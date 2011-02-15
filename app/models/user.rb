@@ -31,9 +31,12 @@ class User < ActiveRecord::Base
     200 * Math.atan(x / 3) / Math::PI
   end
 
+  def kitchen_efficiency_score_rounded
+    "%.2f" % kitchen_efficiency_score
+  end
+
   def kitchen_efficiency_score_display
-    score = kitchen_efficiency_score
-    "Efficiency Score = %.2f / 100" % score
+    "Efficiency Score = #{kitchen_efficiency_score_rounded} / 100"
   end
 
   def kitchen_efficiency_score_description
